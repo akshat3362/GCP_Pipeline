@@ -22,7 +22,7 @@ jobs:
         service_account_key: ${{secrets.SA_KEY}}
     - name: Authenticate with Google Cloud
       run: |
-        echo "${{ secrets.GCP_SA_KEY }}" | gcloud auth activate-service-account --key-file=-
+        echo "${{ secrets.GCP_SA_KEY }}" | gcloud auth activate-service-account ${{secrets.SA_EMAIL}} --key-file=-
         gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
     - name: Read Each file and Deploy into Big Query
       run: |
