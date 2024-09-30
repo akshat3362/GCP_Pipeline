@@ -6,7 +6,7 @@ on:
       list_file:
         description: "Name of the File which contains the Order in which File has to be Deployed"
         required: True
-        default: "Script_Order_Execution.txt"
+        default: "script_order_execution.txt"
 jobs:
   deploy-to-bigquery:
     runs-on: ubuntu-latest
