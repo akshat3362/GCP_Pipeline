@@ -1,15 +1,16 @@
 name: Bigquery_Deployment
 
 on:
-  worflow_dispatch:
+  workflow_dispatch:
     inputs:
       list_file:
-        Description: "Name of the File which contains the Order in which File has to be Deployed"
-        Required: True
-        Default: "Script_Order_Execution.txt"
+        description: "Name of the File which contains the Order in which File has to be Deployed"
+        required: True
+        default: "Script_Order_Execution.txt"
 jobs:
-  deploy_to_bigquery:
-    runs_on: ubuntu-latest
+  deploy-to-bigquery:
+    runs-on: ubuntu-latest
+
     steps:
     - name: Checkout the Code
       uses: actions/checkout@v3
@@ -17,8 +18,8 @@ jobs:
     - name: Set up Google Cloud
       uses: google-github-actions/setup-gcloud@v1
       with: 
-        project_id: {{ secrets.PROJECT_ID}}
-        service_account_key: {{secrets.SA_KEY}}
+        project_id: ${{ secrets.PROJECT_ID}}
+        service_account_key: ${{secrets.SA_KEY}}
     - name: Authenticate with Google Cloud
       run: |
         echo "${{ secrets.GCP_SA_KEY }}" | gcloud auth activate-service-account --key-file=-
@@ -31,5 +32,5 @@ jobs:
           bq query --use_legacy_sql=false < "$sql_file"
         done < "${{ github.event.inputs.list_file }}"
     - name: Deployment Summary
-        run: echo "Deployment Completed"
+      run: echo "Deployment Completed"
         
