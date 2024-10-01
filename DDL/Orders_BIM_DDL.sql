@@ -8,6 +8,4 @@ CREATE OR REPLACE TABLE `keen-dolphin-436707-b9.EDM_CONFIRMED_PRD.Orders_BIM` (
   item_id STRING,
   quantity INT64,
   price FLOAT64
-)
-PARTITION BY Order_id 
-CLUSTER BY item_id;
+);
