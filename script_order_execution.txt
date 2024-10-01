@@ -1,1 +1,4 @@
 DDL/Orders_DDL.sql
+DDL/Errors_DDL.sql
+DDL/Orders_BIM_DDL.sql
+DDL/SP_LOAD_ORDERS.sql
